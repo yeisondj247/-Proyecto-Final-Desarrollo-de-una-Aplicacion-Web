@@ -1,0 +1,57 @@
+﻿@model Noodle.ViewModels.ProductInBillViewModel
+@{
+    ViewBag.Title = "Productos a facturar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Boolean firstCol = true;
+}
+<h2 class="text-center">Productos a facturar</h2>
+
+@if (Model.Products.Count == 0)
+{
+    <div class="col-md-3">
+        <div class="text-center">
+            <h2>Nuevo</h2>
+            <img src="~/Images/create-product-icon.png" />
+            <h3>0</h3>
+            <a href="/Products/New" class="btn btn-default">Agregar</a>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+}
+else
+{
+    int t = 3;
+    for (int i = 0; i < Model.Products.Count(); i += t)
+    {
+        <div class="row">
+            @if (firstCol)
+            {
+                <div class="col-md-3">
+                    <div class="text-center">
+                        <h2>Facturar</h2>
+                        <img src="~/Images/create-bill-icon.png" />
+                        <h3>$@Model.Total</h3>
+                        <a href="/Bills/Process" class="btn btn-default">Facturar</a>
+                    </div>
+                </div>
+                firstCol = false;
+            }
+            @if (i >= 3)
+            {
+                t = 4;
+            }
+            @foreach (var products in Model.Products.Skip(i).Take(t))
+            {
+                <div class="col-md-3">
+                    <div class="text-center">
+                        <h2>@products.Products.Name</h2>
+                        <img src="~/Images/product-icon.png" />
+                        <h3>@products.Lot</h3>
+                        <a href="/Bills/Edit/@products.Id"><img src="~/Images/bt-edit.png" /></a>
+                        <a href="/Bills/RemoveProduct/@products.Id"><img src="~/Images/bt-remove.png" /></a>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+}

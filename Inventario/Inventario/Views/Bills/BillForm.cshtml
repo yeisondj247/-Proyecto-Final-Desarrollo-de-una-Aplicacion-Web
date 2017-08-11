@@ -1,0 +1,28 @@
+﻿@model Noodle.ViewModels.ProductsInBillFormViewModel
+@{
+    ViewBag.Title = "Guardar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Guardar</h2>
+
+@using (Html.BeginForm("Save", "Bills"))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.Products.Products.Name):
+        @Html.DisplayTextFor(m => m.Products.Products.Name)
+    </div>
+    <div class="form-group">
+        <label>Cantidad</label>
+    @Html.TextBoxFor(m => m.Products.Lot, new { @class = "form-control" })
+</div>
+    @Html.HiddenFor(m => m.Products.Id)
+    @Html.HiddenFor(m => m.Products.ProductsId, new { Value = Model.Products.Products.Id })
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-primary">Guardar</button>
+}
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}

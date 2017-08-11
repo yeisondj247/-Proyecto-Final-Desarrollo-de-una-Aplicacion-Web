@@ -1,0 +1,19 @@
+﻿@model Noodle.ViewModels.OneProductViewModel
+@{
+    ViewBag.Title = "Eliminar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-center">Eliminar</h2>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="text-center">
+            <h2>@Model.Product.Name</h2>
+            <img src="~/Images/product-icon.png" />
+            <h3>@Model.Product.Lot</h3>
+            <a href="/Products/" class="btn btn-default">Volver</a>
+            <a href="/Products/ConfirmRemove/@Model.Product.Id" class="btn btn-danger">Eliminar</a>
+        </div>
+    </div>
+</div>

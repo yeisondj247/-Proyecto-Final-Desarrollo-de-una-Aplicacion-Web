@@ -1,0 +1,19 @@
+﻿@model Noodle.ViewModels.OneBillViewModel
+@{
+    ViewBag.Title = "Eliminar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-center">Eliminar</h2>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="text-center">
+            <h2>Factura @Model.Bill.Id</h2>
+            <img src="~/Images/Bill-icon.png" />
+            <h3>$@Model.Bill.Price</h3>
+            <a href="/Bills/" class="btn btn-default">Volver</a>
+            <a href="/Bills/ConfirmRemove/@Model.Bill.Id" class="btn btn-danger">Eliminar</a>
+        </div>
+    </div>
+</div>

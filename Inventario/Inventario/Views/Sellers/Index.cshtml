@@ -1,0 +1,59 @@
+﻿@model Noodle.ViewModels.SellerViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Boolean firstCol = true;
+}
+
+<h2 class="text-center">Vendedores</h2>
+
+@if (Model.Sellers.Count == 0)
+{
+    <div class="col-md-3">
+        <div class="text-center">
+            <h2>Nuevo</h2>
+            <img src="~/Images/create-seller-icon.png" />
+            <h3>0</h3>
+            <a href="/Sellers/New" class="btn btn-default">Crear</a>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+}
+else
+{
+    int t = 3;
+    for (int i = 0; i < Model.Sellers.Count(); i += t)
+    {
+        <div class="row">
+            @if (firstCol)
+            {
+                <div class="col-md-3">
+                    <div class="text-center">
+                        <h2>Nuevo</h2>
+                        <img src="~/Images/create-seller-icon.png" />
+                        <h3>0</h3>
+                        <a href="/Sellers/New" class="btn btn-default">Crear</a>
+                    </div>
+                </div>
+                firstCol = false;
+            }
+            @if (i >= 3)
+            {
+                t = 4;
+            }
+            @foreach (var sellers in Model.Sellers.Skip(i).Take(t))
+            {
+                <div class="col-md-3">
+                    <div class="text-center">
+                        <h2>@sellers.Nombre</h2>
+                        <img src="~/Images/seller-icon.png" />
+                        <h3>@sellers.Telefono</h3>
+                        <a href="/Sellers/Details/@sellers.Id"><img src="~/Images/bt-details.png" /></a>
+                        <a href="/Sellers/Edit/@sellers.Id"><img src="~/Images/bt-edit.png" /></a>
+                        <a href="/Sellers/Remove/@sellers.Id"><img src="~/Images/bt-remove.png" /></a>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+}

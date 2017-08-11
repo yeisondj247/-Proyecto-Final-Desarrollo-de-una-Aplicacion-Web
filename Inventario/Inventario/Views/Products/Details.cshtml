@@ -1,0 +1,33 @@
+﻿@model Noodle.ViewModels.OneProductViewModel
+@{
+    ViewBag.Title = "Detalles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var tclass = "";
+    if (@Model.Product.Lot <= 0)
+    {
+        tclass = "text-danger";
+    }
+}
+<div class="text-center">
+    <h2>Detalles del producto</h2>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="text-center">
+            <h2>@Model.Product.Name</h2>
+            <img src="~/Images/product-icon.png" />
+            <h3 class="@tclass">@Model.Product.Lot</h3>
+            <h3>Precio: @Model.Product.Price</h3>
+            <h3>Vendedor: @Model.Product.Sellers.Nombre</h3>
+            @if (Model.Product.Lot == 0)
+            {
+                <div class="alert alert-danger" role="alert">
+                    Este producto esta en decadencia.
+                </div>
+            }
+            <a href="/Products/Edit/@Model.Product.Id" class="btn btn-default">Editar</a>
+            <a href="/Products/Remove/@Model.Product.Id" class="btn btn-danger">Eliminar</a>
+        </div>
+    </div>
+</div>

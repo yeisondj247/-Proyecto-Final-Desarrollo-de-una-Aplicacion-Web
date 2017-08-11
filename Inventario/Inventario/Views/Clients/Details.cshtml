@@ -1,0 +1,22 @@
+﻿@model Noodle.ViewModels.OneClientViewModel
+@{
+    ViewBag.Title = "Detalles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="text-center">
+    <h2>Detalles del cliente</h2>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="text-center">
+            <h2>@Model.Client.Nombre</h2>
+            <img src="~/Images/Client-icon.png" />
+            <h3>@Model.Client.Email</h3>
+            <h3>Cedula: @Model.Client.Cedula</h3>
+            <h3>Telefono: @Model.Client.Telefono</h3>
+            <h3>Direccion: @Model.Client.Direccion</h3>
+            <a href="/Clients/Edit/@Model.Client.Id" class="btn btn-default">Editar</a>
+            <a href="/Clients/Remove/@Model.Client.Id" class="btn btn-danger">Eliminar</a>
+        </div>
+    </div>
+</div>

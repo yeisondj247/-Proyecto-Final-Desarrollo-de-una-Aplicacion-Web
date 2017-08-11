@@ -1,0 +1,31 @@
+﻿@model Noodle.Models.Home
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="text-center">
+            <h3>Crear producto</h3>
+            <img src="~/Images/create-product-icon.png" />
+            <h3>@Model._context.Products.Count()</h3>
+            <a href="/Products/New" class="btn btn-default">Crear</a>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="text-center">
+            <h3>Crear cliente</h3>
+            <img src="~/Images/create-client-icon.png" />
+            <h3>@Model._context.Clients.Count()</h3>
+            <a href="/Clients/New" class="btn btn-default">Crear</a>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="text-center">
+            <h3>Crear vendedor</h3>
+            <img src="~/Images/create-seller-icon.png" />
+            <h3>@Model._context.Sellers.Count()</h3>
+            <a href="/Sellers/New" class="btn btn-default">Crear</a>
+        </div>
+    </div>
+</div>

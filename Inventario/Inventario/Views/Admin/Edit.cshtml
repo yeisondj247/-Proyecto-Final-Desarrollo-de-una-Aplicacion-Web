@@ -1,0 +1,28 @@
+﻿@model Noodle.ViewModels.EditConfigViewModel
+@{
+    ViewBag.Title = "Cambiar datos de acceso";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Cambiar datos de acceso</h2>
+
+@using (Html.BeginForm("Save", "Config"))
+{
+    <div class="form-group">
+        <label>Nuevo nombre de usuario</label>
+        @Html.TextBoxFor(m => m.Config.User)
+        @Html.ValidationMessageFor(m => m.Config.User)
+    </div>
+    <div class="form-group">
+        <label>Nueva contrase&ntilde;a</label>
+        @Html.PasswordFor(m => m.Config.Pass)
+        @Html.ValidationMessageFor(m => m.Config.Pass)
+    </div>
+    @Html.HiddenFor(m => m.Config.Id)
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-primary">Guardar</button>
+}
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}

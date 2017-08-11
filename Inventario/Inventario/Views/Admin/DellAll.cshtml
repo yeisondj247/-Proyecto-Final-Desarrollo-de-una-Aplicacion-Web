@@ -1,0 +1,52 @@
+﻿@model Noodle.ViewModels.ConfigDellAllViewModel
+@{
+    ViewBag.Title = "Borrar todos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    String Title = "";
+    String Message = "";
+    String Caution = "";
+    if (Model.Id == 1)
+    {
+        Title = "Borrar todos los productos";
+        Message = "¿Estas seguro que deseas borrar todos los productos?";
+        Caution = "¡Cuidado! Al borrar todos los productos se borraran tambien todas las facturas e inversiones asociadas al producto.";
+    }
+    if (Model.Id == 2)
+    {
+        Title = "Borrar todos los productos";
+        Message = "¿Estas seguro que deseas borrar todos los clientes?";
+        Caution = "¡Cuidado! Al borrar todos los clientes se borraran tambien todas las facturas asociadas al cliente.";
+    }
+    if (Model.Id == 3)
+    {
+        Title = "Borrar todos los vendedores";
+        Message = "¿Estas seguro que deseas borrar todos los vendedores?";
+        Caution = "¡Cuidado! Al borrar todos los vendedores se borraran tambien todas las inversiones asociadas al vendedor.";
+    }
+    if (Model.Id == 4)
+    {
+        Title = "Borrar todas las categorias";
+        Message = "¿Estas seguro que deseas borrar todas las categorias?";
+        Caution = "¡Cuidado! Al borrar todos las categorias se borraran tambien todos los productos asociados a la categoria.";
+    }
+    if (Model.Id == 5)
+    {
+        Title = "Borrar todas las facturas";
+        Message = "¿Estas seguro que deseas borrar todas las facturas?";
+        Caution = "";
+    }
+    if (Model.Id == 6)
+    {
+        Title = "Borrar todas las inversiones";
+        Message = "¿Estas seguro que deseas borrar todas las inversiones?";
+        Caution = "";
+    }
+}
+
+<h2>@Title</h2>
+<h3>@Message</h3>
+<p class="text-danger">@Caution</p>
+<a href="/Config" class="btn btn-default">Volver</a>
+<a href="/Config/ConfirmDellAll/@Model.Id" class="btn btn-danger">Eliminar</a>
+
+

@@ -1,0 +1,47 @@
+﻿@model Noodle.ViewModels.ProductFormViewModel
+@{
+    ViewBag.Title = "Guardar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Guardar producto</h2>
+
+@if (Model.Id == 503)
+{
+    <div class="alert alert-danger" role="alert">
+        Debes completar todos los campos del formulario correctamente.
+    </div>
+}
+@if (Model.Id == 504)
+{
+    <div class="alert alert-danger" role="alert">
+        La cantidad supera la cantidad maxima.
+    </div>
+}
+@using (Html.BeginForm("Save", "Products"))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.Products.Name)
+        @Html.TextBoxFor(m => m.Products.Name, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor( m => m.Products.Lot )
+        @Html.TextBoxFor( m => m.Products.Lot , new { @class = "form-control" } )
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Products.Price)
+        @Html.TextBoxFor(m => m.Products.Price, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Products.SellersId)
+        @Html.DropDownListFor(m => m.Products.SellersId, new SelectList(Model.Sellers, "Id", "Nombre"), "Selecciona vendedor", new { @class = "form-control" })
+    </div>
+    @Html.HiddenFor(m => m.Products.Id)
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-primary">Guardar</button>
+}
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,20 @@
+﻿@model Noodle.ViewModels.OneSellerViewModel
+@{
+    ViewBag.Title = "Eliminar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-center">Eliminar</h2>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="text-center">
+            <h2>@Model.Seller.Nombre</h2>
+            <img src="~/Images/Client-icon.png" />
+            <h3>@Model.Seller.Telefono</h3>
+            <b>¡Cuidado! Al eliminar un vendedor se eliminaran automaticamente los productos asociados al mismo.</b><br />
+            <a href="/Sellers/" class="btn btn-default">Volver</a>
+            <a href="/Sellers/ConfirmRemove/@Model.Seller.Id" class="btn btn-danger">Eliminar</a>
+        </div>
+    </div>
+</div>

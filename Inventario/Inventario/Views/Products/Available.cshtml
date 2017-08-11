@@ -1,0 +1,41 @@
+﻿@model Noodle.ViewModels.ProductViewModel
+@{
+    ViewBag.Title = "Productos disponibles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-center">Productos disponibles</h2>
+
+@if (Model.Products.Count == 0)
+{
+    <h3>Ninguno.</h3>
+}
+else
+{
+    int t = 4;
+    for (int i = 0; i < Model.Products.Count(); i += t)
+    {
+        <div class="row">
+            @foreach (var products in Model.Products.Skip(i).Take(t))
+            {
+                var tclass = "";
+                if (products.Lot <= products.LotMin)
+                {
+                    tclass = "text-danger";
+                }
+                else if (products.Lot == products.LotMax)
+                {
+                    tclass = "text-success";
+                }
+                <div class="col-md-3">
+                    <div class="text-center">
+                        <h2>@products.Name</h2>
+                        <img src="~/Images/product-icon.png" />
+                        <h3 class="@tclass">@products.Lot</h3>
+                        <h3>$@products.Price</h3>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+}

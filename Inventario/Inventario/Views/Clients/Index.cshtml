@@ -1,0 +1,60 @@
+﻿@model Noodle.ViewModels.ClientViewModel
+@{
+    ViewBag.Title = "Clientes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Boolean firstCol = true;
+}
+ 
+<h2 class="text-center">Clientes</h2>
+
+@if (Model.Clients.Count == 0)
+{
+    <div class="col-md-3">
+        <div class="text-center">
+            <h2>Nuevo</h2>
+            <img src="~/Images/create-client-icon.png" />
+            <h3>0</h3>
+            <a href="/Clients/New" class="btn btn-default">Crear</a>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+}
+else
+{
+    int t = 3;
+    for (int i = 0; i < Model.Clients.Count(); i += t)
+    {
+        <div class="row">
+            @if (firstCol)
+            {
+                <div class="col-md-3">
+                    <div class="text-center">
+                        <h2>Nuevo</h2>
+                        <img src="~/Images/create-client-icon.png" />
+                        <h3>0</h3>
+                        <a href="/Clients/New" class="btn btn-default">Crear</a>
+                    </div>
+                </div>
+                firstCol = false;
+            }
+            @if (i >= 3)
+            {
+                t = 4;
+            }
+            @foreach (var Clients in Model.Clients.Skip(i).Take(t))
+            {
+                <div class="col-md-3">
+                    <div class="text-center">
+                        <h2>@Clients.Nombre</h2>
+                        <img src="~/Images/client-icon.png" />
+                        <h3>@Clients.Email</h3>
+                        <a href="/Clients/Details/@Clients.Id"><img src="~/Images/bt-details.png" /></a>
+                        <a href="/Clients/Edit/@Clients.Id"><img src="~/Images/bt-edit.png" /></a>
+                        <a href="/Clients/Remove/@Clients.Id"><img src="~/Images/bt-remove.png" /></a>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+}
+

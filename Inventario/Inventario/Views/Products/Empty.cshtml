@@ -1,0 +1,20 @@
+﻿@model Noodle.ViewModels.OneProductViewModel
+@{
+    ViewBag.Title = "Insuficiente";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="text-center">
+    <h2>Insuficiente en inventario</h2>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="text-center">
+            <h2>@Model.Product.Name</h2>
+            <img src="~/Images/product-icon.png" />
+            <h3>@Model.Product.Categories.Name</h3>
+            <h3 class="text-danger">@Model.Product.Lot/@Model.Product.LotMax</h3>
+            <a href="/Products/Edit/@Model.Product.Id" class="btn btn-default">Editar</a>
+            <a href="/Products/Remove/@Model.Product.Id" class="btn btn-danger">Eliminar</a>
+        </div>
+    </div>
+</div>

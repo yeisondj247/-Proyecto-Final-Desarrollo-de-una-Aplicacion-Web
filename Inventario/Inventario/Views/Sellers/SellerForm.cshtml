@@ -1,0 +1,41 @@
+﻿@model Noodle.ViewModels.SellerFormViewModel
+@{
+    ViewBag.Title = "Guardar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Guardar vendedor</h2>
+
+@using (Html.BeginForm("Save", "Sellers"))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.Sellers.Nombre)
+        @Html.TextBoxFor(m => m.Sellers.Nombre)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Sellers.Cedula)
+        @Html.TextBoxFor(m => m.Sellers.Cedula)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Sellers.Telefono)
+        @Html.TextBoxFor(m => m.Sellers.Telefono)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Sellers.Direccion)
+        @Html.TextBoxFor(m => m.Sellers.Direccion)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Sellers.Descripcion)
+        @Html.TextAreaFor(m => m.Sellers.Descripcion)
+    </div>
+    @Html.HiddenFor(m => m.Sellers.Id)
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-primary">Guardar</button>
+}
+
+
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}

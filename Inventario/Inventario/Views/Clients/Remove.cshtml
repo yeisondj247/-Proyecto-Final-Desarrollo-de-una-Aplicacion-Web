@@ -1,0 +1,19 @@
+﻿@model Noodle.ViewModels.OneClientViewModel
+@{
+    ViewBag.Title = "Eliminar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-center">Eliminar</h2>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="text-center">
+            <h2>@Model.Client.Nombre</h2>
+            <img src="~/Images/Client-icon.png" />
+            <h3>@Model.Client.Email</h3>
+            <a href="/Clients/" class="btn btn-default">Volver</a>
+            <a href="/Clients/ConfirmRemove/@Model.Client.Id" class="btn btn-danger">Eliminar</a>
+        </div>
+    </div>
+</div>

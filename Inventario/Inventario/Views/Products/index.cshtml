@@ -1,0 +1,73 @@
+﻿@model Noodle.ViewModels.ProductViewModel
+@{
+    ViewBag.Title = "Productos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Boolean firstCol = true;
+}
+        <div class="text-center">
+            <h2>Facturar</h2>
+            <img src="~/Images/create-bill-icon.png" />
+            <h4>@Model.ProductsInBill.Count productos</h4>
+            <a href="/Bills/Process" class="btn btn-success">Facturar</a>
+            <a href="/Bills/Products" class="btn btn-default">Ver</a>
+            <a href="/Bills/ProductsClear" class="btn btn-danger">Limpiar</a>
+        </div>
+    <div class="clearfix"></div>
+<h2 class="text-center">Productos Inventario</h2>
+
+@if (Model.Products.Count == 0)
+{
+    <div class="col-md-3">
+        <div class="text-center">
+            <h2>Nuevo</h2>
+            <img src="~/Images/create-product-icon.png" />
+            <h3>0</h3>
+            <a href="/Products/New" class="btn btn-default">Crear</a>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+}
+else
+{
+    int t = 3;
+    for (int i = 0; i < Model.Products.Count(); i += t)
+    {
+    <div class="row">
+        @if (firstCol)
+        {
+            <div class="col-md-3">
+                <div class="text-center">
+                    <h2>Nuevo</h2>
+                    <img src="~/Images/create-product-icon.png" />
+                    <h3>0</h3>
+                    <a href="/Products/New" class="btn btn-default">Crear</a>
+                </div>
+            </div>
+            firstCol = false;
+        }
+        @if (i >= 3)
+        {
+            t = 4;
+        }
+        @foreach (var products in Model.Products.Skip(i).Take(t))
+        {
+            var tclass = "";
+            if (products.Lot <= 0)
+            {
+                tclass = "text-danger";
+            }
+            <div class="col-md-3">
+                <div class="text-center">
+                    <h2>@products.Name</h2>
+                    <img src="~/Images/product-icon.png" />
+                    <h3 class="@tclass">@products.Lot</h3>
+                    <a href="/Products/Details/@products.Id"><img src="~/Images/bt-details.png" /></a>
+                    <a href="/Products/Edit/@products.Id"><img src="~/Images/bt-edit.png" /></a>
+                    <a href="/Bills/New/@products.Id"><img src="~/Images/bt-sell.png" /></a>
+                    <a href="/Products/Remove/@products.Id"><img src="~/Images/bt-remove.png" /></a>
+                </div>
+            </div>
+        }
+    </div>
+    }
+}

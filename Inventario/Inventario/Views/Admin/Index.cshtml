@@ -1,0 +1,24 @@
+﻿@model Noodle.ViewModels.ConfigViewModel
+@{
+    ViewBag.Title = "Administrador";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="text-center">
+    <h2>Administrador</h2>
+</div>
+@if (Model.Id == 100)
+{
+    <div class="alert alert-success" role="alert">
+        La accion fue realizada con exito.
+    </div>
+}
+<div class="row">
+    <div class="col-md-12">
+        <div class="text-center">
+            <h2>@Model.Config.User</h2>
+            <img src="~/Images/admin-icon.png" /><br />
+            <a href="/Login/Out" class="btn btn-danger">Cerrar sesión</a><br />
+        </div>
+    </div>
+</div>

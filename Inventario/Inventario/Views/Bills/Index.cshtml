@@ -1,0 +1,66 @@
+﻿@model Noodle.ViewModels.BillsViewModel
+@{
+    ViewBag.Title = "Facturas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Boolean firstCol = true;
+}
+
+<h2 class="text-center">Facturas</h2>
+@if (Model.Id == 100)
+{
+    <div class="alert alert-success" role="alert">
+        Email enviado correctamente.
+    </div>
+}
+
+@if (Model.Bills.Count == 0)
+{
+    <div class="col-md-3">
+        <div class="text-center">
+            <h2>Nueva</h2>
+            <img src="~/Images/create-bill-icon.png" />
+            <h3>$0</h3>
+            <a href="/Products" class="btn btn-default">Crear</a>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+}
+else
+{
+    int t = 3;
+    for (int i = 0; i < Model.Bills.Count(); i += t)
+    {
+        <div class="row">
+            @if (firstCol)
+            {
+                <div class="col-md-3">
+                    <div class="text-center">
+                        <h2>Nueva</h2>
+                        <img src="~/Images/create-bill-icon.png" />
+                        <h3>$0</h3>
+                        <a href="/Products" class="btn btn-default">Crear</a>
+                    </div>
+                </div>
+                firstCol = false;
+            }
+            @if (i >= 3)
+            {
+                t = 4;
+            }
+            @foreach (var Bills in Model.Bills.Skip(i).Take(t))
+            {
+                <div class="col-md-3">
+                    <div class="text-center">
+                        <h2>Factura @Bills.Id</h2>
+                        <img src="~/Images/bill-icon.png" />
+                        <h3>$@Bills.Price</h3>
+                        <a href="/Bills/Details/@Bills.Id"><img src="~/Images/bt-details.png" /></a>
+                        <a href="/Bills/Print/@Bills.Id"><img src="~/Images/bt-print.png" /></a>
+                        <a href="/Bills/Remove/@Bills.Id"><img src="~/Images/bt-remove.png" /></a>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+}
+
